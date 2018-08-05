@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProjektMove.Models.Text_Model>
+
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<div>
+
+    @foreach (var item in Model)
+    {
+        <p id="@item.Id">
+            @Html.DisplayFor(modelItem => item.Text)
+            <input type="Button" class="btn btn-default" onclick="Remove_Paragraph(@item.Id)" value="Remove" />
+        </p>
+    }
+
+</div>
+
+<script>
+    function Remove_Paragraph(id) {
+
+        
+        var url = "/Home/Remove_Paragraph";
+
+        var request = $.ajax({
+            type: "POST",
+            url: url,
+            data: { id: id },
+        })
+
+        request.done(function (msg) {
+
+            if (msg == "True") {
+                var Id = '#' + id;
+                $(Id).hide()
+            }
+
+        });
+
+    }
+</script>
+

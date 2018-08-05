@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProjektMove.Models.Image_Model>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr id="@item.Id">
+            <td class="rounded float-left">
+                <img src="@Url.Content(item.Directory)" alt="@item.Directory" class="img-thumbnail" style="width:200px;height:200px;">
+
+                <p><input type="Button" class="btn btn-default" onClick="Delete (@item.Id)" id="Remove_Photo" value="Remove" /></p>
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<script>
+
+    function Delete(id) {
+
+        
+        var url = "/Action_Move/Remove_Gallery_Image";
+
+        var request = $.ajax({
+
+            url: url,
+            data: { id: id },
+        })
+
+        request.done(function (msg) {
+
+            if (msg == "True") {
+                var Id = '#' + id;
+                $(Id).hide()
+
+
+            }
+
+
+
+
+        });
+
+    }
+</script>

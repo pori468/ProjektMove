@@ -1,0 +1,98 @@
+﻿@model ProjektMove.Models.Contac_View_Model
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div id="Result_Message">
+
+</div>
+
+<form id="Contac_Data" action="http://localhost:40524/Home/Contact" method="post">
+
+
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Contac_View_Model</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="contac" type="button" value="Send Message" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+$(document).ready(function () {
+    $('#contac').click(function () {
+        var frm = $('#Contac_Data');
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+
+                    if (data == "True") {
+                        $('#Contac_Data').trigger("reset");
+                        $('#Result_Message').html('<div class="alert alert-success">\<strong> Thanks!</strong> Your Message Has been Delevered to MOVE.</div>');
+
+
+                    }
+                    else {
+                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> YYour Message Has Been Delevered to MOVE. Try Again.</div>');
+
+                    }
+
+                },
+                error: function (data) {
+                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Message Has Not Been Delevered to MOVE. Try Again.</div>');
+
+                },
+            });
+
+
+        });
+    });
+</script>

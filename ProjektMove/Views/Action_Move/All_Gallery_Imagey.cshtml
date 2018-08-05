@@ -1,0 +1,72 @@
+﻿
+
+@{
+    ViewBag.Title = "Show_Gallery_Image";
+}
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<h2>All Gallery Imagey</h2>
+
+<div id="Result_Message"></div>
+
+<div class="col-md-10">
+    <input type="file" id="Photo" value="Image" />
+    <input type="Button" class="btn btn-default" id="Add_Photo" value="Add Image" />
+</div>
+
+<div id="All_Image"></div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#All_Image").load("/Action_Move/Show_Gallery_Imagey");
+
+        $("#Add_Photo").click(function () {
+
+
+            var data = new FormData();
+            var files = $("#Photo").get(0).files;
+            if (files.length > 0) {
+                data.append("MyImages", files[0]);
+            }
+
+            $.ajax({
+                url: "/Action_Move/Add_Gallery_Image",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        $("#All_Image").load("/Action_Move/Show_Gallery_Imagey");
+                        $('#Result_Message').html('<div class="alert alert-success">\
+                                                        <strong> Thanks!</strong> Your Photo Is Added.</div >');
+
+                        $('#Photo').val('');
+                    }
+
+                    else
+                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Added.. Try Again.</div >');
+
+
+
+
+                },
+                error: function (er) {
+                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Data Is Not Modified.. Try Again.</div >');
+
+                }
+
+            });
+
+
+    
+
+        });
+
+    });
+</script>
+

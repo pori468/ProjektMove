@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Members";
+}
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<div id="Header">
+</div>
+
+<div >
+   
+        <input id="View_Controller" type="Button" value="New Volunteer" class="btn btn-default" />
+    
+</div>
+
+<div id="Member_Content">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#Member_Content").load("Volunteer_Registration/All_Members");
+        $("#Header").html("<h2>All Members </h2>");
+
+        $('#View_Controller').click(function () {
+            if ($(this).val() == "New Volunteer") {
+                $(this).val("All Members");
+                $("#Header").html("<h2>New Volunters </h2>"); 
+                $("#Member_Content").load("Volunteer_Registration/New_Volunteer");
+                
+            }
+            else {
+                $(this).val("New Volunteer");
+                $("#Header").html("<h2>All Members </h2>");
+                $("#Member_Content").load("Volunteer_Registration/All_Members");
+                
+            }
+        });
+    });
+   
+</script>
