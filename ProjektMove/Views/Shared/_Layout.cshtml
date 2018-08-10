@@ -38,17 +38,19 @@
         <header role="banner">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">Move</a>
+                    <a class="navbar-brand" href="http://localhost:40524">Move</a>
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarsExample05">
                         <ul class="navbar-nav mr-auto pl-lg-5 pl-0">
                             <li class="nav-item">
-                                <a class="nav-link active" href="index.html">Home</a>
+                                <a class="nav-link active" href="http://localhost:40524">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
+                                <a class="nav-link" href="http://localhost:40524/Home/About">About</a>
+
                             </li>
 
                             <li class="nav-item">
@@ -63,13 +65,23 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                                <a class="nav-link" href="http://localhost:40524/Home/Contact">Contact</a>
                             </li>
+                            @if (Request.IsAuthenticated)
+                            {
+                               @* <li class="nav-item">
+                                    <a class="nav-link" href="http://localhost:40524/Action_Move/All_Gallery_Imagey">Gallery</a>
+                                </li>*@
+                                <li class="nav-item">
+                                    <a class="nav-link" href="http://localhost:40524/Volunteer_Registration/Index">Members</a>
+                                </li>
+
+                            }
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item cta-btn">
-                                <a class="nav-link" href="member.html">Become a Volunteer</a>
-                            </li>
+                                @Html.Partial("_LoginPartial")
+                                @*<a class="nav-link" href="member.html">Become a Volunteer</a>*@
+                            
                         </ul>
 
                     </div>

@@ -26,18 +26,21 @@ namespace ProjektMove.Interface
         {
             try
             {
-                Person_Info_Model Information = new Person_Info_Model();
+                Person_Info_Model Information = new Person_Info_Model
+                {
+                    Name = info.Name,
+                    Email = info.Email,
+                    Phone_No = info.Phone_No,
+                    Category = info.Category,
 
-                Information.Name = info.Name;
-                Information.Email = info.Email;
-                Information.Phone_No = info.Phone_No;
-                Information.Category = info.Category;
+                    Approved = false,
+                    Email_Verification = false,
+                    Volunteer = false,
+                    Leader = false,
+                    Contac = false,
 
-                Information.Approved = false;
-                Information.Email_Verification = false;
-                Information.Volunteer = false;
-                Information.Leader = false;
-                Information.Date = System.DateTime.Now;
+                    Date = System.DateTime.Now
+                };
 
                 _Data.Person_Info_Models.Add(Information);
                 _Data.SaveChanges();
@@ -81,7 +84,9 @@ namespace ProjektMove.Interface
                         Category = Member.Category,
                         Volunteer = Member.Volunteer,
                         Leader = Member.Leader,
+                        Contac=Member.Contac,
                         Date = Member.Date
+
 
 
 
@@ -125,14 +130,15 @@ namespace ProjektMove.Interface
                 Person.Volunteer = true;
                 Person.Date = System.DateTime.Now;
                 Person.Ownership_Id = Guid.NewGuid().ToString();
-                
 
-               Image_Model Image = new Image_Model();
 
-                Image.Image_Name = Person.Name;
-                Image.Ownership_Id = Person.Ownership_Id;
-                Image.Date = System.DateTime.Now;
-                Image.Directory= "~/img/Member_Photo.jpg".ToString();
+                Image_Model Image = new Image_Model
+                {
+                    Image_Name = Person.Name,
+                    Ownership_Id = Person.Ownership_Id,
+                    Date = System.DateTime.Now,
+                    Directory = "~/img/Member_Photo.jpg".ToString()
+                };
 
                 _Data.Image_Models.Add(Image);
                 _Data.SaveChanges();
@@ -191,6 +197,7 @@ namespace ProjektMove.Interface
                     Leader = Member.Leader,
                     Date = Member.Date,
                     Approved = Member.Approved,
+                    Contac=Member.Contac,
                     Ownership_Id = Member.Ownership_Id
                 };
 
@@ -225,6 +232,7 @@ namespace ProjektMove.Interface
                     Leader = info.Leader,
                     Date = info.Date,
                     Approved = info.Approved,
+                    Contac=info.Contac,
                     Ownership_Id = info.Ownership_Id
                 };
 

@@ -12,11 +12,13 @@ namespace ProjektMove.Interface
     interface IHome
     {
         bool Contac_Move(FormCollection Message);
-        Image_Model Show_About_Image();
-        bool Change_Image(HttpPostedFile pc);
+        Image_Model Show_About_Image(int id);
+        
+        bool Change_Image(HttpPostedFile pc, int id);
 
         IEnumerable<Text_Model> All_Paragraph();
         bool Add_Paragraph(String Text);
         bool Remove(int Id);
+        IEnumerable<Contac_Person_Model> Contac_Person();
     }
 }

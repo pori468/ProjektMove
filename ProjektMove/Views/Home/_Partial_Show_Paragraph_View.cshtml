@@ -11,10 +11,14 @@
 
     @foreach (var item in Model)
     {
-        <p id="@item.Id">
-            @Html.DisplayFor(modelItem => item.Text)
+    <p id="@item.Id">
+        @Html.DisplayFor(modelItem => item.Text)
+        @if (Request.IsAuthenticated)
+        {
             <input type="Button" class="btn btn-default" onclick="Remove_Paragraph(@item.Id)" value="Remove" />
-        </p>
+
+        }
+    </p>
     }
 
 </div>

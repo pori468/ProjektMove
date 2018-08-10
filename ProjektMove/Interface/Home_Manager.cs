@@ -42,13 +42,18 @@ namespace ProjektMove.Interface
             }
         }
 
-       public Image_Model Show_About_Image()
+        public Image_Model Show_About_Image(int id )
         {
             Image_Model Image = new Image_Model();
-               Image.Directory ="~/img/Default_Image";
+            Image.Directory = "~/img/Default_Image";
+            string ID = "About_70f7-6507-4718-bc4a-e14531d5445Image";
+            if (id==2)
+            {
+                ID = "About2_70f7-6507-4718-bc4a-e14531d5445Image";
+            }
             try
             {
-                Image =_Data.Image_Models.FirstOrDefault(x=>x.Ownership_Id== "About_70f7-6507-4718-bc4a-e14531d5445Image");
+                Image = _Data.Image_Models.FirstOrDefault(x => x.Ownership_Id ==ID);
 
                 return Image;
             }
@@ -58,17 +63,24 @@ namespace ProjektMove.Interface
                 return Image;
             }
         }
+        
 
-        public bool Change_Image(HttpPostedFile pic)
+        public bool Change_Image(HttpPostedFile pic, int id)
         {
             try
             {
-
+               
                 if (pic.ContentLength > 0)
                 {
-                   
-
                     var filepath = System.Web.HttpContext.Current.Server.MapPath("~/img/About_Image.jpg");
+
+                    if (id == 2)
+                    {
+                        filepath = System.Web.HttpContext.Current.Server.MapPath("~/img/About_Image2.jpg");
+
+                    }
+                    
+
                     if (File.Exists(filepath))
                     {
                         File.Delete(filepath);
@@ -76,15 +88,9 @@ namespace ProjektMove.Interface
                     }
                
 
-                //var _comPath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/img"), "About_Image" + ".jpg");
-
+                
 
                     pic.SaveAs(filepath);
-
-                    //var Image = _Data.Image_Models.FirstOrDefault(x=>x.Ownership_Id== "About_70f7-6507-4718-bc4a-e14531d5445Image");
-
-                    //Image.Directory = "~/img/About_Image.jpg";
-                    //_Data.SaveChanges();
 
                     return true;
 
@@ -153,6 +159,42 @@ namespace ProjektMove.Interface
                 return false;
             }
            
+        }
+
+        public IEnumerable<Contac_Person_Model>  Contac_Person()
+        {
+            List<Contac_Person_Model> Person = new List<Contac_Person_Model>();
+            List<Member_ViewModel> Result = new List<Member_ViewModel>();
+            try
+            {
+
+                var Contac_Person = _Data.Person_Info_Models.Where(x => x.Contac == true && x.Volunteer == true).ToList();
+
+                
+
+
+                foreach (var single in Contac_Person)
+                {
+                    
+
+                    Person.Add(new Contac_Person_Model()
+                    {
+                        Id = single.Id,
+                        Photo = _Data.Image_Models.FirstOrDefault(x => x.Ownership_Id == single.Ownership_Id).Directory,
+                        Name = single.Name,
+                        Phone_No = single.Phone_No,
+                        Email = single.Email,
+                        Ownership_Id = single.Ownership_Id
+                    });
+
+                }
+                return Person;
+            }
+
+            catch
+            {
+                return Person;
+            }
         }
     }
 }

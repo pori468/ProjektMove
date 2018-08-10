@@ -1,85 +1,328 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
+﻿
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<div id="Result_Message"></div>
 
-    <div id="About_Image">
+<section class="home-slider-loop-false  inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('/img/slider-1.jpg');">
 
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>About MOVE</h1>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-offset-2 col-md-10">
-        <input type="file" id="Photo" value="Image" />
-        <input id="Change_About_Image" type="Button" value="Change Image" class="btn btn-default" />
+</section>
+<!-- END slider -->
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>About Us</h2>
+                    <span class="back-text">MOVE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row col-lg-12">
+            <div id="Result_Message"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
 
+                <div class="row">
+                    <div id="About_Image"></div>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="file" id="Photo" value="Image" />
+                            <input id="Change_About_Image" type="Button" value="Change Image" class="btn btn-outline-primary" />
+
+                        </div>
+                    }
+
+                </div>
+
+                <div id="About_Image2" class="mb-5"></div>
+                @if (Request.IsAuthenticated)
+                {
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="file" id="Photo" value="Image" />
+                        <input id="Change_About_Image2" type="Button" value="Change Image" class="btn btn-outline-primary" />
+
+                    </div>
+                }
+
+            </div>
+
+            <div class="col-lg-6 pl-2 pl-lg-5">
+                <div id="About_Text">
+
+                </div>
+                @if (Request.IsAuthenticated)
+                {
+                    <input id="Add_Paragraph" type="Button" value="Add Paragraph" class="btn btn-outline-primary" />
+                    <div id="Input"></div>
+
+                    <div id="Button">
+                    </div>
+                }
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>Gallery</h2>
+                    <span class="back-text">The Gallery</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div >
-        <div id="About_Text">
+
+
+    <div class="row col-lg-12">
+
+        <div class="row col-lg-12">
+            <div id="Result_Message_Gallery"></div>
+        </div>
+
+        <div id="All_Image" class=" row owl-carousel centernonloop">
+
+        </div>
+        @if (Request.IsAuthenticated)
+        {
+            <div class=" row col-sm-12">
+                <input type="file" id="Photo" value="Image" />
+                <input type="Button" class="btn btn-outline-primary" id="Add_Photo" value="Add Image" />
+            </div>
+        }
+    </div>
+
+
+</section>
+
+
+
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>Volunteer</h2>
+                    <span class="back-text">Our Volunteer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div id="Volunteer" class="major-caousel js-carousel-1 owl-carousel">
+
+            </div>
+            <!-- END slider -->
+        </div>
+    </div>
+
+</section> <!-- .section -->
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>STØTTET AF</h2>
+                    <span class="back-text">STØTTET AF</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+
+
+        <div id="Move_sponsor" class="row">
+
 
         </div>
 
-        <input id="Add_Paragraph" type="Button" value="Add Paragraph" class="btn btn-default" />
+        <div class="row col-lg-12">
+            @if (Request.IsAuthenticated)
+            {
+                <div class=" col-lg-3">
+                    <input type="Button" class="btn btn-outline-primary" id="Add_Sponsor" value="Add Sponsor" />
+
+                </div>
+            }
+            
+
+                <div id="Add_new_Sponsor" class="col-lg-9"></div>
+            </div>
 
     </div>
-
-    <div id="Input"></div>
-
-    <div id="Button">
-    </div>
+</section>
 
 
 <script>
 
     $(document).ready(function () {
-        $('#About_Image').load("/Home/Show_About");
+        $('#About_Image').load("/Home/Show_About/?id=1");
+        $('#About_Image2').load("/Home/Show_About/?id=2");
         $('#About_Text').load("/Home/Show_Paragraph");
+        $('#Volunteer').load("/Volunteer_Registration/Our_Volunteer");
+        $('#Move_sponsor').load("/Action_Move/Sponsor");
 
 
-        $("#Change_About_Image").click(function () {
-        var data = new FormData();
-        var files = $("#Photo").get(0).files;
-        if (files.length > 0) {
-            data.append("MyImages", files[0]);
-        }
+        $("#All_Image").load("/Action_Move/Show_Gallery_Imagey");
 
-        $.ajax({
-            url: "/Home/Change_About",
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: data,
-            success: function (response) {
-                if (response) {
-                   $('#About_Image').load("/Home/Show_About");
-                    $('#Result_Message').html('<div class="alert alert-success">\
-                                                        <strong> Thanks!</strong> Your Photo Is Changed.</div >');
+        $("#Add_Sponsor").click(function () {
+            $('#Add_new_Sponsor').html('<form id="New_Sponsor_Form" action="http://localhost:40524/Action_Move/New_Sponsor"   \
+            method="post"> <div class="form-horizontal"> <hr /> <div class="form-group">\
+            <label class="control-label col-md-2">Attach an image</label>\
+            <div class="col-md-10"><input type="file" id="Photo" name="fileUpload1" />\
+            </div></div><textarea id="Text_Sponsor" Name="Sponsor_Text" class="form-control" tabindex="4" \
+            placeholder="Write Sponsor Details" required></textarea><div class="form-group">\
+            <div class="col-md-offset-2 col-md-10"><input onclick="Sponsor_add()" id="Sponsor_Info" type="button" \
+            value="Save" class="btn btn-outline-primary" /></div></div></div></form>');
 
-                    $('#Photo').val('');
+        });
+
+        
+
+        $("#Add_Photo").click(function () {
+
+
+            var data = new FormData();
+            var files = $("#Photo").get(0).files;
+            if (files.length > 0) {
+                data.append("MyImages", files[0]);
+            }
+
+            $.ajax({
+                url: "/Action_Move/Add_Gallery_Image",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        $("#All_Image").load("/Action_Move/Show_Gallery_Imagey");
+                        $('#Result_Message_Gallery').html('<div class="alert alert-success">\
+                                                        <strong> Thanks!</strong> Your Photo Is Added.</div >');
+
+                        $('#Photo').val('');
+                    }
+
+                    else
+                        $('#Result_Message_Gallery').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Added.. Try Again.</div >');
+
+
+
+
+                },
+                error: function (er) {
+                    $('#Result_Message_Gallery').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Data Is Not Modified.. Try Again.</div >');
+
                 }
 
-                else
+            });
+
+
+
+
+        });
+
+        $("#Change_About_Image").click(function () {
+            var data = new FormData();
+            var files = $("#Photo").get(0).files;
+            if (files.length > 0) {
+                data.append("MyImages", files[0]);
+            }
+
+            $.ajax({
+                url: "/Home/Change_About",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        $('#About_Image').load("/Home/Show_About");
+                        $('#Result_Message').html('<div class="alert alert-success">\
+                                                                <strong> Thanks!</strong> Your Photo Is Changed.</div >');
+
+                        $('#Photo').val('');
+                    }
+
+                    else
+                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
+
+
+
+
+                },
+                error: function (er) {
                     $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
 
-
-
-
-            },
-            error: function (er) {
-                $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
-
-            }
+                }
 
             });
         });
 
+        $("#Change_About_Image2").click(function () {
+            var data = new FormData();
+            var files = $("#Photo").get(0).files;
+            if (files.length > 0) {
+                data.append("MyImages", files[0]);
+            }
+
+            $.ajax({
+                url: "/Home/Change_About2",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        $('#About_Image2').load("/Home/Show_About/?id=2");
+                        $('#Result_Message').html('<div class="alert alert-success">\
+                                                                <strong> Thanks!</strong> Your Photo Is Changed.</div >');
+
+                        $('#Photo').val('');
+                    }
+
+                    else
+                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
+
+
+
+
+                },
+                error: function (er) {
+                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
+
+                }
+
+            });
+        });
 
         $("#Add_Paragraph").click(function () {
 
@@ -88,25 +331,25 @@
 
             $("#Add").click(function () {
                 var text = $("#Text_Input").val();
-               
+
                 if (text != "") {
 
                     $.ajax({
                         url: "/Home/Add_Paragraph",
                         type: "POST",
                         data: { Text: text },
-                        
+
                         success: function (response) {
-                           
+
                             if (response == "True") {
-                               
+
                                 $('#About_Text').load("/Home/Show_Paragraph");
                                 $('#Result_Message').html('<div class="alert alert-success">\
-                                                        <strong> Thanks!</strong> Your Paragraph Is Added.</div >');
-                              
+                                                                <strong> Thanks!</strong> Your Paragraph Is Added.</div >');
+
                                 $('#Input').empty();
                                 $('#Button').empty();
-                               
+
                             }
 
                             else
@@ -118,13 +361,13 @@
                         },
                         error: function (er) {
                             $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Paragraph Is Not Added error.. Try Again.</div >');
-                            
+
                         }
 
                     });
 
-                    
-                    
+
+
                 }
 
                 else {
@@ -132,11 +375,223 @@
 
 
                 }
-                
+
 
             });
-           
+
         });
 
     });
+
+
+    function Sponsor_add() {
+        
+        var frm = $('#New_Sponsor_Form');
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+
+               
+                if (data != "NULL") {
+                    var Name = data;
+                    var data = new FormData();
+                    var files = $("#Photo").get(0).files;
+                    if (files.length > 0) {
+                        data.append("MyImages", files[0]);
+                        data.append("Name", Name);
+
+
+                    }
+
+
+
+                    $.ajax({
+                        url: "/Action_Move/Upload_Sponsor_Photo",
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            alert(response);
+                            if (response== true) {
+
+                                $('#Add_new_Sponsor').val('');
+                                $('#Add_new_Sponsor').html('<div class="alert alert-success">\
+                                                                <strong> Thanks!</strong> Sponsor Added.</div >');
+
+                            }
+
+                            else
+                                $('#Add_new_Sponsor').html('<div class="alert alert-warning"><strong> Thanks !</strong> Sponsor Added With Default Image.</div >');
+
+
+
+
+                        },
+                        error: function (er) {
+                            alert("fail");
+                            $('#Add_new_Sponsor').html('<div class="alert alert-warning"><strong> Sorry!</strong> Sponsor Not Added.. Try Again.</div >');
+
+                        }
+
+                    });
+
+                }
+
+            },
+            error: function (data) {
+                alert("fail");
+            },
+        });
+
+
+    }
+
 </script>
+
+
+
+@*@{
+        ViewBag.Title = "About";
+    }
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div id="Result_Message"></div>
+
+        <div id="About_Image">
+
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <input type="file" id="Photo" value="Image" />
+            <input id="Change_About_Image" type="Button" value="Change Image" class="btn btn-default" />
+
+        </div>
+
+        <div >
+            <div id="About_Text">
+
+            </div>
+
+            <input id="Add_Paragraph" type="Button" value="Add Paragraph" class="btn btn-default" />
+
+        </div>
+
+        <div id="Input"></div>
+
+        <div id="Button">
+        </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#About_Image').load("/Home/Show_About");
+            $('#About_Text').load("/Home/Show_Paragraph");
+
+
+            $("#Change_About_Image").click(function () {
+            var data = new FormData();
+            var files = $("#Photo").get(0).files;
+            if (files.length > 0) {
+                data.append("MyImages", files[0]);
+            }
+
+            $.ajax({
+                url: "/Home/Change_About",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response) {
+                       $('#About_Image').load("/Home/Show_About");
+                        $('#Result_Message').html('<div class="alert alert-success">\
+                                                            <strong> Thanks!</strong> Your Photo Is Changed.</div >');
+
+                        $('#Photo').val('');
+                    }
+
+                    else
+                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
+
+
+
+
+                },
+                error: function (er) {
+                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
+
+                }
+
+                });
+            });
+
+
+            $("#Add_Paragraph").click(function () {
+
+                $('#Input').html('<textarea id="Text_Input" name="career[message]" class="form-control" tabindex="4" placeholder="Write your details" required></textarea>', '<input id="Add" type="Button" value="Add" class="btn btn-default" />');
+                $('#Button').html('<input id="Add" type="Button" value="Add" class="btn btn-default" />');
+
+                $("#Add").click(function () {
+                    var text = $("#Text_Input").val();
+
+                    if (text != "") {
+
+                        $.ajax({
+                            url: "/Home/Add_Paragraph",
+                            type: "POST",
+                            data: { Text: text },
+
+                            success: function (response) {
+
+                                if (response == "True") {
+
+                                    $('#About_Text').load("/Home/Show_Paragraph");
+                                    $('#Result_Message').html('<div class="alert alert-success">\
+                                                            <strong> Thanks!</strong> Your Paragraph Is Added.</div >');
+
+                                    $('#Input').empty();
+                                    $('#Button').empty();
+
+                                }
+
+                                else
+                                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Paragraph Is Not Added false.. Try Again.</div >');
+
+
+
+
+                            },
+                            error: function (er) {
+                                $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Paragraph Is Not Added error.. Try Again.</div >');
+
+                            }
+
+                        });
+
+
+
+                    }
+
+                    else {
+                        $('#Result_Message').html('<div class="alert alert-warning"> <strong> Your Text is Empty</div >');
+
+
+                    }
+
+
+                });
+
+            });
+
+        });
+    </script>*@

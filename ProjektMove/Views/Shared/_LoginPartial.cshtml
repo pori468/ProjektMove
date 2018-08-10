@@ -6,20 +6,22 @@
     @Html.AntiForgeryToken()
 
 <ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Gallery", "All_Gallery_Imagey", "Action_Move")</li>
-    <li>@Html.ActionLink("Members", "Index", "Volunteer_Registration")</li>
-    <li>
-        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-    </li>
-    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    @*  <li class="nav-item cta-btn " style="margin:2px;">@Html.ActionLink("Gallery", "All_Gallery_Imagey", "Action_Move")</li>
+            <li class="nav-item cta-btn " style="margin:2px;">@Html.ActionLink("Members", "Index", "Volunteer_Registration")</li>
+        <li class="nav-item cta-btn " style="margin:2px;">
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>*@
+    <li class="nav-item cta-btn " style="margin:2px;"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
 </ul>
     }
 }
 else 
 {
-    <ul class="nav navbar-nav navbar-right">
-      
-        <li>@Html.ActionLink("BECOME A VOLUNTEER", "Register", "Volunteer_Registration", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+<ul class="nav navbar-nav navbar-right">
+
+    
+    <li class="nav-item cta-btn " style="margin:2px;">
+       @Html.ActionLink("BECOME A VOLUNTEER", "Register", "Volunteer_Registration", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li class="nav-item cta-btn" style="margin:2px;">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
 }

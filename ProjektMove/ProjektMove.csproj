@@ -223,6 +223,7 @@
     <Compile Include="Models\Image_Model.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person_Info_Model.cs" />
+    <Compile Include="Models\Sponsor_View_Model.cs" />
     <Compile Include="Models\Text_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -298,7 +299,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="scss\_tables.txt" />
-    <Content Include="Views\Home\slider-1.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -341,7 +341,6 @@
     <Content Include="Views\Action_Move\_Partial_Show_All_Image_View.cshtml" />
     <Content Include="Views\Action_Move\All_Gallery_Imagey.cshtml" />
     <Content Include="Views\Volunteer_Registration\Email_Confirmation.cshtml" />
-    <Content Include="Views\Home\myview.cshtml" />
     <Content Include="Views\Home\_Partial_Show_About_Image_View.cshtml" />
     <Content Include="Views\Home\_Partial_Show_Paragraph_View.cshtml" />
     <Content Include="Views\Account\Forgot_Password_Warning.cshtml" />
@@ -430,6 +429,9 @@
     <Content Include="scss\_type.scss" />
     <Content Include="scss\_utilities.scss" />
     <Content Include="scss\_variables.scss" />
+    <Content Include="Views\Volunteer_Registration\_Partial_Our_Volunteer_view.cshtml" />
+    <Content Include="Views\Action_Move\_Partial_Sponsor_View.cshtml" />
+    <Content Include="Views\Home\_Partial_Contac_Person_View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

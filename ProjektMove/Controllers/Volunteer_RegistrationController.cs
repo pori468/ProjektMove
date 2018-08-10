@@ -25,12 +25,17 @@ namespace ProjektMove.Controllers
 
 
 
-
+        
 
         public ActionResult All_Members()
         {
             return PartialView ("_Partial_All_Member_View", _Personal_Information.All_Members());
             
+        }
+        public ActionResult Our_Volunteer()
+        {
+            return PartialView("_Partial_Our_Volunteer_view", _Personal_Information.All_Members());
+
         }
 
         public ActionResult New_Volunteer()

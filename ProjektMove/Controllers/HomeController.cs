@@ -22,11 +22,13 @@ namespace ProjektMove.Controllers
             return View();
         }
         
-        public ActionResult Show_About()
+        public ActionResult Show_About(int? id )
         {
            
-            return PartialView("_Partial_Show_About_Image_View", _Home.Show_About_Image());
+            return PartialView("_Partial_Show_About_Image_View", _Home.Show_About_Image(id.Value));
         }
+
+        
 
         [HttpPost]
         public ActionResult Change_About()
@@ -34,7 +36,25 @@ namespace ProjektMove.Controllers
             if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
             {
 
-                bool Result = _Home.Change_Image(System.Web.HttpContext.Current.Request.Files["MyImages"]);
+                bool Result = _Home.Change_Image(System.Web.HttpContext.Current.Request.Files["MyImages"],1);
+
+                return Content(Result.ToString());
+
+            }
+
+            else
+            {
+                return Content(false.ToString());
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Change_About2()
+        {
+            if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+
+                bool Result = _Home.Change_Image(System.Web.HttpContext.Current.Request.Files["MyImages"],2);
 
                 return Content(Result.ToString());
 
@@ -76,6 +96,11 @@ namespace ProjektMove.Controllers
         {
             bool Result = _Home.Remove(Id);
             return Content(Result.ToString());
+        }
+
+        public ActionResult Contac_Person ()
+        {
+            return PartialView("_Partial_Contac_Person_View", _Home.Contac_Person());
         }
     }
 }

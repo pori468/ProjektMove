@@ -26,8 +26,9 @@ namespace ProjektMove.Models
         public bool Volunteer { get; set; }
        
         public bool Leader { get; set; }
-       
         public bool Approved { get; set; }
+        public bool Contac { get; set; }
+
         [Display(Name = "Emai Confirmation")]
         public bool Email_Verification { get; set; }
         public DateTime Date { get; set; }
@@ -57,6 +58,7 @@ namespace ProjektMove.Models
         public bool Volunteer { get; set; }
 
         public bool Leader { get; set; }
+        public bool Contac { get; set; }
 
         public bool Approved { get; set; }
         public DateTime Date { get; set; }
