@@ -18,33 +18,36 @@
         </div>
 
     </div>
-
+    
 </section>
 <!-- END slider -->
 
 <section class="section">
+    
     <div class="container">
         <div class="row">
-            <div id="Result_Message" class="col-md-12 ">
+            <div id="Result_Message" class="col-md-12 " >
 
             </div>
         </div>
         <div class="row">
+
             <div class="col-md-12">
+
                 <div class="form-wrap overlap primary element-animate">
-                    
+
                     <form id="Registration" action="http://localhost:40524/Volunteer_Registration/Register" method="post">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Name">
+                            <input type="text" name="Name" class="form-control" placeholder="Name">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" name="Email" class="form-control" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Phone Number">
+                            <input type="text" name="Phone_No" class="form-control" placeholder="Phone Number">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Catagory">
+                            <input type="text" name="Category" class="form-control" placeholder="Catagory">
                         </div>
 
                         <div class="form-group">
@@ -70,8 +73,9 @@
                 url: frm.attr('action'),
                 data: frm.serialize(),
                 success: function (data) {
-
+                    
                     if (data == "True") {
+                        alert("Thanks! For Your Interest.");
                         $('#Registration').trigger("reset");
                         $('#Result_Message').html('<div class="alert alert-success">\
                                                     <strong> Thanks!</strong> For Your Interest.</div >');
@@ -79,6 +83,7 @@
 
                     }
                     else {
+                        alert(" Sorry! Your Application Is Not Submitted. Try Again."); 
                         $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Application Is Not Submitted. Try Again.</div >');
 
                     }

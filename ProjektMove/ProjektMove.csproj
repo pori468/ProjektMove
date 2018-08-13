@@ -196,6 +196,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Action_MoveController.cs" />
+    <Compile Include="Controllers\ActivitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Volunteer_RegistrationController.cs" />
@@ -204,8 +205,10 @@
     </Compile>
     <Compile Include="Helpers\Constant.cs" />
     <Compile Include="Interface\Action_Move_Manager.cs" />
+    <Compile Include="Interface\Activities_Manager.cs" />
     <Compile Include="Interface\Home_Manager.cs" />
     <Compile Include="Interface\IAction_Move.cs" />
+    <Compile Include="Interface\IActivities.cs" />
     <Compile Include="Interface\IHome.cs" />
     <Compile Include="Interface\IPersonal_Information.cs" />
     <Compile Include="Interface\IUtilities.cs" />
@@ -432,6 +435,11 @@
     <Content Include="Views\Volunteer_Registration\_Partial_Our_Volunteer_view.cshtml" />
     <Content Include="Views\Action_Move\_Partial_Sponsor_View.cshtml" />
     <Content Include="Views\Home\_Partial_Contac_Person_View.cshtml" />
+    <Content Include="Views\Activities\VESTERGADE_SEVEN.cshtml" />
+    <Content Include="Views\Activities\_Partial_Image_View.cshtml" />
+    <Content Include="Views\Activities\_Partial_Paragraph_View.cshtml" />
+    <Content Include="Views\Activities\FOLLOW_EVEN.cshtml" />
+    <Content Include="Views\Activities\CLUB_MOVE.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
