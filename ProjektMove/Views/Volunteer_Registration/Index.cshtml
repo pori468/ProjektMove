@@ -53,21 +53,19 @@
 
     <script>
         $(document).ready(function () {
-            $("#Member_Content").load("Volunteer_Registration/All_Members");
+            $("#Member_Content").load("/Volunteer_Registration/All_Members");
             $("#Header").html("<h2>All Members </h2>");
 
             $('#View_Controller').click(function () {
                 if ($(this).val() == "New Volunteer") {
                     $(this).val("All Members");
                     $("#Header").html("<h2>New Volunters </h2>");
-                    $("#Member_Content").load("Volunteer_Registration/New_Volunteer");
-
+                    $("#Member_Content").load("/Volunteer_Registration/New_Volunteer");
                 }
                 else {
                     $(this).val("New Volunteer");
                     $("#Header").html("<h2>All Members </h2>");
-                    $("#Member_Content").load("Volunteer_Registration/All_Members");
-
+                    $("#Member_Content").load("/Volunteer_Registration/All_Members");
                 }
             });
             

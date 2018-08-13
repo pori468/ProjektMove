@@ -1,16 +1,40 @@
 ﻿@model ProjektMove.Models.Member_ViewModel
 
-@{
-    ViewBag.Title = "Edit";
-}
 
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<h2>Edit Member Information</h2>
+
+<section class="home-slider-loop-false  inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('/img/slider-1.jpg');">
+
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Members</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END slider -->
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>Edit Member Information </h2>
+                    <span class="back-text">MOVE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div id="Result_Message">
 
@@ -104,20 +128,22 @@
             </div>
         </div>
     </div>
-    </form>
+</form>
 
 
 @*<form>
-    
-        <input type="file" id="Photo" name="picf" />
 
-        <input id="btncatsave" type="button" value="Save" class="btn btn-default" />
-       
-</form>*@
+            <input type="file" id="Photo" name="picf" />
+
+            <input id="btncatsave" type="button" value="Save" class="btn btn-default" />
+
+    </form>*@
 
 
 <script>
     $("#Edit_Info").click(function () {
+
+        alert("Check");
 
         var frm = $('#Edit_Member_Info');
         $.ajax({
@@ -132,8 +158,8 @@
             if (files.length > 0) {
                 data.append("MyImages", files[0]);
                 data.append("Name", Name);
-               
-               
+
+
             }
 
 
@@ -146,7 +172,7 @@
                 data: data,
                 success: function (response) {
                     if (response) {
-                       
+
                         $('#Result_Message').html('<div class="alert alert-success">\
                                                         <strong> Thanks!</strong> Member Profile is Modified.</div >');
 
@@ -182,7 +208,7 @@
 
 
 
-      
+
     });
 </script>
 

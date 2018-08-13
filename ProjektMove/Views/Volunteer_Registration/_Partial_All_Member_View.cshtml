@@ -38,7 +38,7 @@
     @foreach (var item in Model)
     {
 
-    <tr id="@item.Id">
+    <tr id="@item.Id" >
 
         <td>
             <img src="@Url.Content(item.Photo)" alt="@item.Name" class="img-thumbnail" style="width:100px;height:100px;">
@@ -72,11 +72,12 @@
         <td>
             <a href="/Volunteer_Registration/Edit?id=@item.Id" type="button" class="btn btn-primary" value="Edit">Edit</a>
 
-            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#Member-delete" value="Remove" />
+            @*<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#Member-delete" value="Remove" />*@
+            <input type="button" class="btn btn-primary" onClick="Delete (@item.Id)" value="Remove" />
 
 
         </td>
-        <td>
+        @*<td>
             <div class="modal fade" id="Member-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -94,7 +95,7 @@
                     </div>
                 </div>
             </div>
-        </td>
+        </td>*@
     </tr>
     }
 
@@ -103,13 +104,13 @@
 
 
 <script>
-    $(document).ready(function () {
-        $('#Member-delete').on('show.bs.modal', function (e) {
-            $(this).find('.btn-ok');
-        });
-    });
+    //$(document).ready(function () {
+    //    $('#Member-delete').on('show.bs.modal', function (e) {
+    //        $(this).find('.btn-ok');
+    //    });
+    //});
 
-
+    
       function Delete(id) {
 
 
@@ -126,7 +127,7 @@
             if (msg == "True") {
                 var Id = '#' + id;
                 $(Id).hide()
-
+                alert("Member Deleted from our system");
 
             }
 

@@ -50,22 +50,23 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @if(item.Email_Verification== true)
+            @if (item.Email_Verification == true)
             {
-            <input onClick="Approval(@item.Id)" type="button" class="btn btn-primary" value="Approve" />
+                <input onClick="Approval(@item.Id)" type="button" class="btn btn-primary" value="Approve" />
 
             }
             else
             {
-            <input onClick="Approval(@item.Id)" type="button" class="btn btn-primary" disabled value="Approve" />
+                <input onClick="Approval(@item.Id)" type="button" class="btn btn-primary" disabled value="Approve" />
 
             }
-            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete" value="Remove" />
+            @*<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete" value="Remove" />*@
+              <input type="button" class="btn btn-primary" onClick="Delete (@item.Id)" value="Remove" />
 
 
 
         </td>
-        <td>
+        @*<td>
             <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -83,7 +84,7 @@
                     </div>
                 </div>
             </div>
-        </td>
+        </td>*@
 
     </tr>
         
@@ -100,17 +101,17 @@
 
 
 <script>
-    $(document).ready(function () {
-        $('#confirm-delete').on('show.bs.modal', function (e) {
-            $(this).find('.btn-ok');
-        });
+    //$(document).ready(function () {
+    //    $('#confirm-delete').on('show.bs.modal', function (e) {
+    //        $(this).find('.btn-ok');
+    //    });
 
         
-    });
+    //});
     
 
     function Approval(id) {
-
+       
         var url = "/Volunteer_Registration/Approval";
 
         var request = $.ajax({
