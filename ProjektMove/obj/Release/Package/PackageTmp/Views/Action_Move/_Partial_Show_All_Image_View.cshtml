@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ProjektMove.Models.Image_Model>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+    @* <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+            @{int j = 0;}
+            @for (j = 1; j <= Model.Count(); j++)
+            {
+                <li data-target="#demo" data-slide-to=j></li>
+            }
+
+
+        </ul>*@
+    <div class="carousel-inner" role="listbox" style="text-align:center">
+        @{int i = 0;}
+        @foreach (var item in Model)
+        {
+            i++;
+            var active = i == 1 ? "active" : "";
+            <div class="carousel-item @active">
+                @*  <a id="@item.Id" href="@item.Directory" class="image-popup">*@
+
+                <img src="@Url.Content(item.Directory)" alt="@item.Directory" class="img-fluid" style=" height:400px;width:600px;">
+                @if (Request.IsAuthenticated)
+                {<p><input type="Button" class="btn btn-outline-primary" onClick="Delete (@item.Id)" id="Remove_Photo" value="Remove" /></p>
+                }
+                @*</a>*@
+            </div>
+        }
+    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev" style="color:blue;">
+        <i class="fa fa-arrow-circle-left" style="color: Green;"></i>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next" style="color:blue;">
+        <i class="fa fa-arrow-circle-right" style="color: Green;"></i>
+    </a>
+</div>
+@*  <p><input type="Button" class="btn btn-default" onClick="Delete (@item.Id)" id="Remove_Photo" value="Remove" /></p>
+
+         </a>
+
+
+    }*@
+
+
+@*<div class="owl-carousel centernonloop">
+
+        @foreach (var item in Model)
+        {<div class="col-md-2">
+             <a id="@item.Id" href="@item.Directory" class="image-popup">
+                 <img src="@Url.Content(item.Directory)" alt="@item.Directory" class="img-fluid">
+
+                 <p><input type="Button" class="btn btn-default" onClick="Delete (@item.Id)" id="Remove_Photo" value="Remove" /></p>
+
+             </a>
+        </div>
+
+        }
+
+    </div>
+*@
+
+
+
+<script>
+
+    function Delete(id) {
+
+
+        var url = "/Action_Move/Remove_Gallery_Image";
+
+        var request = $.ajax({
+
+            url: url,
+            data: { id: id },
+        })
+
+        request.done(function (msg) {
+
+            if (msg == "True") {
+                var Id = '#' + id;
+                $(Id).hide()
+
+
+            }
+
+
+
+
+        });
+
+    }
+</script>

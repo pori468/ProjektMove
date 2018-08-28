@@ -1,0 +1,183 @@
+﻿
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<section class="home-slider-loop-false  inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('/img/slider-1.jpg');">
+
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>VESTERGADE SEVEN</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END slider -->
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>VESTERGADE SEVEN</h2>
+                    <span class="back-text">MOVE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row col-lg-12">
+            <div id="Result_Message"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div id="Show_Image"></div>
+                 @if (Request.IsAuthenticated)
+                {
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="file" id="Photo4" value="Image" />
+                    <input id="Change_VESTERGADE_SEVEN_Image" type="Button" value="Change Image" class="btn btn-outline-primary" />
+
+                </div>
+                }
+
+            </div>
+
+               
+
+            <div class="col-lg-6 pl-2 pl-lg-5">
+                <div id="Show_Text">
+
+                </div>
+                 @if (Request.IsAuthenticated)
+                {
+                <input id="Add_Paragraph_VESTERGADE_SEVEN" type="Button" value="Add Paragraph" class="btn btn-outline-primary" />
+                <div id="Input"></div>
+
+                <div id="Button">
+                </div>
+                }
+
+            </div>
+
+
+       
+    </div>
+  </div>
+</section>
+
+<script>
+
+    $(document).ready(function () {
+        $('#Show_Image').load("/Activities/Show_Image/?id=1");
+       
+        $('#Show_Text').load("/Activities/Show_Paragraph/?id=1");
+
+
+        $("#Change_VESTERGADE_SEVEN_Image").click(function () {
+            var data = new FormData();
+            var files = $("#Photo4").get(0).files;
+            if (files.length > 0) {
+                data.append("MyImages", files[0]);
+            }
+
+            $.ajax({
+                url: "/Activities/Change_Image/?id=1",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        $('#Show_Image').load("/Activities/Show_Image/?id=1");
+                        $('#Result_Message').html('<div class="alert alert-success">\
+                                                                <strong> Thanks!</strong> Your Photo Is Changed.</div >');
+
+                        $('#Photo4').val('');
+                    }
+
+                    else
+                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
+
+
+
+
+                },
+                error: function (er) {
+                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
+
+                }
+
+            });
+        });
+
+       
+        $("#Add_Paragraph_VESTERGADE_SEVEN").click(function () {
+
+            $('#Input').html('<textarea id="Text_Input" name="career[message]" class="form-control" tabindex="4" placeholder="Write your details" required></textarea>', '<input id="Add" type="Button" value="Add" class="btn btn-default" />');
+            $('#Button').html('<input id="Add" type="Button" value="Add" class="btn btn-default" />');
+
+            $("#Add").click(function () {
+                var text = $("#Text_Input").val();
+
+                if (text != "") {
+
+                    $.ajax({
+                        url: "/Activities/Add_Paragraph",
+                        type: "POST",
+                        data: { Text: text, id:1},
+
+                        success: function (response) {
+
+                            if (response == "True") {
+
+                                $('#Show_Text').load("/Activities/Show_Paragrap/?id=1");
+                                $('#Result_Message').html('<div class="alert alert-success">\
+                                                                <strong> Thanks!</strong> Your Paragraph Is Added.</div >');
+
+                                $('#Input').empty();
+                                $('#Button').empty();
+
+                            }
+
+                            else
+                                $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Paragraph Is Not Added false.. Try Again.</div >');
+
+
+
+
+                        },
+                        error: function (er) {
+                            $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Paragraph Is Not Added error.. Try Again.</div >');
+
+                        }
+
+                    });
+
+
+
+                }
+
+                else {
+                    $('#Result_Message').html('<div class="alert alert-warning"> <strong> Your Text is Empty</div >');
+
+
+                }
+
+
+            });
+
+        });
+
+    });
+
+
+</script>
+

@@ -1,15 +1,4 @@
-﻿
-
-
-
-
-
-
-@*<!DOCTYPE html>
-<html>
-<head>*@
-
-    <!doctype html>
+﻿<!doctype html>
     <html lang="en">
     <head>
         <title>Project MOVE</title>
@@ -17,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
 
-        @* <link href="~/css/animate.css" rel="stylesheet" />*@
+       
         <link rel="stylesheet" href="~/css/bootstrap.css">
         <link rel="stylesheet" href="~/css/animate.css">
         <link rel="stylesheet" href="~/css/owl.carousel.min.css">
@@ -27,18 +16,14 @@
         <link rel="stylesheet" href="~/fonts/fontawesome/css/font-awesome.min.css">
         <!-- Theme Style -->
         <link rel="stylesheet" href="~/css/style.css">
-        @*<meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - My ASP.NET Application</title>
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")*@
+       
 
     </head>
     <body>
         <header role="banner">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="http://localhost:40524">Move</a>
+                    <a class="navbar-brand" href="/Home/Index">Move</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -46,78 +31,53 @@
                     <div class="collapse navbar-collapse" id="navbarsExample05">
                         <ul class="navbar-nav mr-auto pl-lg-5 pl-0">
                             <li class="nav-item">
-                                <a class="nav-link active" href="http://localhost:40524">Home</a>
+                                <a class="nav-link active" href="/Home/Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:40524/Home/About">About</a>
+                                <a class="nav-link" href="/Home/About">About</a>
 
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:40524/Activities/VESTERGADE_SEVEN">VESTERGADE SEVEN </a>
+                                <a class="nav-link" href="/Activities/VESTERGADE_SEVEN">VESTERGADE SEVEN </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:40524/Activities/CLUB_MOVE">Club MOVE</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:40524/Activities/FOLLOW_EVEN">Follow Even</a>
+                                <a class="nav-link" href="/Activities/CLUB_MOVE">Club MOVE</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost:40524/Home/Contact">Contact</a>
+                                <a class="nav-link" href="/Activities/FOLLOW_EVEN">Follow Even</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/Contact">Contact</a>
                             </li>
                             @if (Request.IsAuthenticated)
                             {
-                               @* <li class="nav-item">
-                                    <a class="nav-link" href="http://localhost:40524/Action_Move/All_Gallery_Imagey">Gallery</a>
-                                </li>*@
+                               
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://localhost:40524/Volunteer_Registration/Index">Members</a>
+                                    <a class="nav-link" href="/Volunteer_Registration/Index">Members</a>
                                 </li>
 
                             }
                         </ul>
                         <ul class="navbar-nav ml-auto">
                                 @Html.Partial("_LoginPartial")
-                                @*<a class="nav-link" href="member.html">Become a Volunteer</a>*@
-                            
+                               
                         </ul>
 
                     </div>
                 </div>
             </nav>
         </header>
-        <!-- END header -->
-        @*<div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                        @Html.Partial("_LoginPartial")
-                    </div>
-                </div>
-            </div>*@
+       
 
         <div class="container body-content">
             @RenderBody()
             <hr />
-            <footer class="site-footer" role="contentinfo">
+            <footer class="bg-dark" role="contentinfo">
                 <div class="container">
-
-
-                    <div class="row">
+                        <div class="row">
                         <div class="col-12 text-md-center text-left">
                             <p>
                                 Copyright &copy;
@@ -129,9 +89,7 @@
                 </div>
             </footer>
             <!-- END footer -->
-            @*<footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>*@
+           
         </div>
 
         @*@Scripts.Render("~/bundles/jquery")

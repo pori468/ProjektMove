@@ -22,17 +22,11 @@ namespace ProjektMove.Interface
         {
             try
             {
-                obj.ToEmail = System.Configuration.ConfigurationManager.AppSettings["From"]; 
+                obj.ToEmail = System.Configuration.ConfigurationManager.AppSettings["Admin"]; 
                 obj.EmailSubject = Helpers.Constant.User_Quary;
-                
                 obj.EMailBody = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/Email_Templets/") + "User_Query" + ".cshtml").Replace("UserName", Message["Name"]).Replace("UserPhone", Message["Phone"]).Replace("UserEmail", Message["Email"]).Replace("UserMessage", Message["Message"]).ToString();
-               
-
-                
-               
-
-
                 var result = _utility.SendEmail(obj);
+
                 return result;
             }
 

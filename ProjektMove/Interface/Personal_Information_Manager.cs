@@ -50,10 +50,6 @@ namespace ProjektMove.Interface
                 obj.EmailSubject = Helpers.Constant.New_Volunteer;
                 var My_Url = Helpers.Constant.Email_Verification_Link + Information.Id;
                 obj.EMailBody = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/Email_Templets/") + "Volunteer_Confirmation" + ".cshtml").Replace("Volunteer", Information.Name).Replace("ConfirmationLink", My_Url).ToString();
-               
-
-
-
                 var result = _utility.SendEmail(obj);
 
                 return result;

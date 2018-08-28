@@ -1,0 +1,74 @@
+﻿
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<section class="home-slider-loop-false  inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('/img/slider-1.jpg');">
+
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Members</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END slider -->
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>Members</h2>
+                    <span class="back-text">MOVE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="Header">
+    </div>
+
+    <div>
+
+        <input id="View_Controller" type="Button" value="New Volunteer" class="btn btn-default" />
+
+    </div>
+
+    <div id="Member_Content">
+
+    </div>
+
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#Member_Content").load("/Volunteer_Registration/All_Members");
+            $("#Header").html("<h2>All Members </h2>");
+
+            $('#View_Controller').click(function () {
+                if ($(this).val() == "New Volunteer") {
+                    $(this).val("All Members");
+                    $("#Header").html("<h2>New Volunters </h2>");
+                    $("#Member_Content").load("/Volunteer_Registration/New_Volunteer");
+                }
+                else {
+                    $(this).val("New Volunteer");
+                    $("#Header").html("<h2>All Members </h2>");
+                    $("#Member_Content").load("/Volunteer_Registration/All_Members");
+                }
+            });
+            
+        });
+
+    </script>

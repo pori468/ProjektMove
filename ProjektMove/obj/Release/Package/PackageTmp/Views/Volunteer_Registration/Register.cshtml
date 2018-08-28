@@ -1,0 +1,207 @@
+﻿@model ProjektMove.Models.Person_Info_Model
+
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<section class="home-slider-loop-false  inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('/img/slider-1.jpg');">
+
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Become A Member</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</section>
+<!-- END slider -->
+
+<section class="section">
+    
+    <div class="container">
+        <div class="row">
+            <div id="Result_Message" class="col-md-12 " >
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="form-wrap overlap primary element-animate">
+
+                    <form id="Registration" action="/Volunteer_Registration/Register" method="post">
+                        <div class="form-group">
+                            <input type="text" name="Name" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="Email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="Phone_No" class="form-control" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="Category" class="form-control" placeholder="Catagory">
+                        </div>
+
+                        <div class="form-group">
+                            <input id="Register" type="Button" class="btn btn-warning btn-block py-3" value="Submit Information">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+<script>
+
+    $(document).ready(function () {
+        $('#Register').click(function () {
+            var frm = $('#Registration');
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                   
+                    if (data == "True") {
+                       
+                        $('#Registration').trigger("reset");
+                        $('#Result_Message').html('<div class="alert alert-success">\
+                                                  <strong> Thanks!</strong> For Your Interest.</div >');
+
+
+                    }
+                    else {
+                       
+                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Application Is Not Submitted. Try Again.</div >');
+
+                    }
+
+                },
+                error: function (data) {
+                    
+                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Application Is Not Submitted. Try Again.</div >');
+
+                },
+            });
+
+
+        });
+    });
+</script>
+
+@*@model ProjektMove.Models.Person_Info_Model
+
+    @{
+        ViewBag.Title = "Register";
+    }
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div id="Result_Message">
+
+    </div>
+
+    <form id="Registration" action="/Volunteer_Registration/Register" method="post">
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Volunteer Application</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone_No, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phone_No, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone_No, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="Register" type="Button" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#Register').click(function () {
+                var frm = $('#Registration');
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data: frm.serialize(),
+                    success: function (data) {
+
+                        if (data == "True") {
+                            $('#Registration').trigger("reset");
+                            $('#Result_Message').html('<div class="alert alert-success">\
+                                                    <strong> Thanks!</strong> For Your Interest.</div >');
+
+
+                        }
+                        else {
+                            $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Application Is Not Submitted. Try Again.</div >');
+
+                        }
+
+                    },
+                    error: function (data) {
+                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Application Is Not Submitted. Try Again.</div >');
+
+                    },
+                });
+
+
+            });
+        });
+    </script>
+
+*@
+

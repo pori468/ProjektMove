@@ -55,7 +55,7 @@
                 @if (Request.IsAuthenticated)
                 {
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="file" id="Photo" value="Image" />
+                        <input type="file" id="Photo2" value="Image" />
                         <input id="Change_About_Image2" type="Button" value="Change Image" class="btn btn-outline-primary" />
 
                     </div>
@@ -194,10 +194,10 @@
         $("#All_Image").load("/Action_Move/Show_Gallery_Imagey");
 
         $("#Add_Sponsor").click(function () {
-            $('#Add_new_Sponsor').html('<form id="New_Sponsor_Form" action="http://localhost:40524/Action_Move/New_Sponsor"   \
+            $('#Add_new_Sponsor').html('<form id="New_Sponsor_Form" action="/Action_Move/New_Sponsor"   \
             method="post"> <div class="form-horizontal"> <hr /> <div class="form-group">\
             <label class="control-label col-md-2">Attach an image</label>\
-            <div class="col-md-10"><input type="file" id="Photo" name="fileUpload1" />\
+            <div class="col-md-10"><input type="file" id="Photo3" name="fileUpload1" />\
             </div></div><textarea id="Text_Sponsor" Name="Sponsor_Text" class="form-control" tabindex="4" \
             placeholder="Write Sponsor Details" required></textarea><div class="form-group">\
             <div class="col-md-offset-2 col-md-10"><input onclick="Sponsor_add()" id="Sponsor_Info" type="button" \
@@ -265,7 +265,7 @@
                 data: data,
                 success: function (response) {
                     if (response) {
-                        $('#About_Image').load("/Home/Show_About");
+                        $('#About_Image').load("/Home/Show_About/?id=1");
                         $('#Result_Message').html('<div class="alert alert-success">\
                                                                 <strong> Thanks!</strong> Your Photo Is Changed.</div >');
 
@@ -289,7 +289,7 @@
 
         $("#Change_About_Image2").click(function () {
             var data = new FormData();
-            var files = $("#Photo").get(0).files;
+            var files = $("#Photo2").get(0).files;
             if (files.length > 0) {
                 data.append("MyImages", files[0]);
             }
@@ -397,7 +397,7 @@
                 if (data != "NULL") {
                     var Name = data;
                     var data = new FormData();
-                    var files = $("#Photo").get(0).files;
+                    var files = $("#Photo3").get(0).files;
                     if (files.length > 0) {
                         data.append("MyImages", files[0]);
                         data.append("Name", Name);
@@ -414,8 +414,8 @@
                         contentType: false,
                         data: data,
                         success: function (response) {
-                            alert(response);
-                            if (response== true) {
+                            
+                            if (response == "True") {
 
                                 $('#Add_new_Sponsor').val('');
                                 $('#Add_new_Sponsor').html('<div class="alert alert-success">\
@@ -431,7 +431,7 @@
 
                         },
                         error: function (er) {
-                            alert("fail");
+                           
                             $('#Add_new_Sponsor').html('<div class="alert alert-warning"><strong> Sorry!</strong> Sponsor Not Added.. Try Again.</div >');
 
                         }
@@ -442,7 +442,8 @@
 
             },
             error: function (data) {
-                alert("fail");
+                $('#Add_new_Sponsor').html('<div class="alert alert-warning"><strong> Sorry!</strong> Sponsor Not Added.. Try Again.</div >');
+
             },
         });
 

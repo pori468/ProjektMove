@@ -1,15 +1,10 @@
 ﻿@model IEnumerable<ProjektMove.Models.Sponsor_View_Model>
 
-<meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 @foreach (var item in Model)
-{<div id="@item.Id + 'Text'" class="row">
-
+{<div id="" class="row @item.Id">
+    
         <div class="col-md-6">
             <div class="blog d-block d-lg-flex">
                 <img src="@Url.Content(item.Directory)" alt="@item.Directory" class=" img-fluid" style="height:250px;width:250px;">
@@ -17,7 +12,10 @@
                     <h3>MOVE er blevet til med støtte fra:</h3>
                     @if (item.Text.Length > 50)
                     {
-                        <p>@item.Text.Substring(0, 50) <span>...</span> </p>
+                      <p>@item.Text.Substring(0, 50) <span>...</span> </p>
+                              
+                        <input type="Button" class="btn btn-primary btn-sm " onclick="More_Text(@item.Id)" value="Read More" />
+                        <br /><br />
                     }
                     else
                     {
@@ -25,8 +23,7 @@
                     }
 
 
-                    <input type="Button" class="btn btn-primary btn-sm " onclick="More_Text('@item.Id' + ' split ' + '@item.Text')" value="Read More" />
-                    <br /><br />
+
                     @if (Request.IsAuthenticated)
                     {
                         <input type="Button" class="btn btn-primary btn-sm " onclick="Delete_Sponsor(@item.Id)" value="Remove" />
@@ -35,48 +32,34 @@
 
             </div>
         </div>
-        <div id="@item.Id" class="col-md-6 ">
-            @{ int i = item.Id;}
+        <div id="@item.Id" class="col-md-6 d-none">
+            <p>@item.Text</p>
+            <input type="Button" class="btn btn-primary btn-sm " onclick="Close(@item.Id)" value="OK" />
+
         </div>
     </div>
 }
 
  <script>
 
-    function More_Text(data) {
-
-        var Data = data.split('split');
-
-        Data[0] = "#"+ Data[0];
-
-
-        var text = '<div class="alert alert-warning alert-dismissible message">\
-            <span onclick="Close()" >&times;</span >'+ Data[1]+'</div >';
-        $(Data[0]).html(text);
-
-
-
-       @* I found this code for nice read more option . try this 
-           
-           <div class="alert alert-success alert-dismissible fade hide" role="alert" id="MessageSuccess">
-                        <strong>Thanks !</strong>  Your Event is Successfully Modified .
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div> *@
-
+    function More_Text(id) {
+       
+        ID = "#" + id;
+       $(ID).removeClass('d-none');
+       
+        
     }
 
     function Close(id) {
 
 
-        $(".message").hide();
+        $(ID).addClass('d-none');
 
     }
 
     function Delete_Sponsor (id) {
         var url = "/Action_Move/Remove_Sponsor";
-
+        var Id = '.' + id;
         var request = $.ajax({
             type: "POST",
             url: url,
@@ -84,10 +67,12 @@
         })
 
         request.done(function (msg) {
-
+            
+           
             if (msg == "True") {
-                var id = '#' + id +'Text';
-                $(id).hide();
+                
+               $(Id).hide();;
+               
             }
 
         });

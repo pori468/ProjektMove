@@ -43,7 +43,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
-<form id="Edit_Member_Info" action="http://localhost:40524/Volunteer_Registration/Edit" method="post">
+<form id="Edit_Member_Info" action="/Volunteer_Registration/Edit" method="post">
 
     @Html.AntiForgeryToken()
 
@@ -143,8 +143,7 @@
 <script>
     $("#Edit_Info").click(function () {
 
-        alert("Check");
-
+       
         var frm = $('#Edit_Member_Info');
         $.ajax({
             type: frm.attr('method'),
@@ -201,8 +200,8 @@
 
             },
             error: function (data) {
-                $("#Fail").removeClass("hide");
-                $("#Fail").addClass("show");
+                $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Member Profile is Not Modified.. Try Again.</div >');
+
             },
         });
 

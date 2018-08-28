@@ -36,7 +36,7 @@
 
                 <div class="form-wrap overlap primary element-animate">
 
-                    <form id="Registration" action="http://localhost:40524/Volunteer_Registration/Register" method="post">
+                    <form id="Registration" action="/Volunteer_Registration/Register" method="post">
                         <div class="form-group">
                             <input type="text" name="Name" class="form-control" placeholder="Name">
                         </div>
@@ -73,23 +73,24 @@
                 url: frm.attr('action'),
                 data: frm.serialize(),
                 success: function (data) {
-                    
+                   
                     if (data == "True") {
-                        alert("Thanks! For Your Interest.");
+                       
                         $('#Registration').trigger("reset");
                         $('#Result_Message').html('<div class="alert alert-success">\
-                                                    <strong> Thanks!</strong> For Your Interest.</div >');
+                                                  <strong> Thanks!</strong> For Your Interest.</div >');
 
 
                     }
                     else {
-                        alert(" Sorry! Your Application Is Not Submitted. Try Again."); 
+                       
                         $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Application Is Not Submitted. Try Again.</div >');
 
                     }
 
                 },
                 error: function (data) {
+                    
                     $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Application Is Not Submitted. Try Again.</div >');
 
                 },
@@ -116,7 +117,7 @@
 
     </div>
 
-    <form id="Registration" action="http://localhost:40524/Volunteer_Registration/Register" method="post">
+    <form id="Registration" action="/Volunteer_Registration/Register" method="post">
 
         @Html.AntiForgeryToken()
 

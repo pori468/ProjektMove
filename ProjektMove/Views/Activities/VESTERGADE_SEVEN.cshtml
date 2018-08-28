@@ -42,7 +42,7 @@
                  @if (Request.IsAuthenticated)
                 {
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="file" id="Photo" value="Image" />
+                    <input type="file" id="Photo4" value="Image" />
                     <input id="Change_VESTERGADE_SEVEN_Image" type="Button" value="Change Image" class="btn btn-outline-primary" />
 
                 </div>
@@ -83,7 +83,7 @@
 
         $("#Change_VESTERGADE_SEVEN_Image").click(function () {
             var data = new FormData();
-            var files = $("#Photo").get(0).files;
+            var files = $("#Photo4").get(0).files;
             if (files.length > 0) {
                 data.append("MyImages", files[0]);
             }
@@ -100,7 +100,7 @@
                         $('#Result_Message').html('<div class="alert alert-success">\
                                                                 <strong> Thanks!</strong> Your Photo Is Changed.</div >');
 
-                        $('#Photo').val('');
+                        $('#Photo4').val('');
                     }
 
                     else

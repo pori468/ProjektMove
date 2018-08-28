@@ -1,0 +1,253 @@
+﻿@model IEnumerable<ProjektMove.Models.Sponsor_View_Model>
+
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<section class="home-slider-loop-false  inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('/img/slider-1.jpg');">
+
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>CLUB MOVE</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END slider -->
+<section class="section element-animate">
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>CLUB MOVE</h2>
+                    <span class="back-text">MOVE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row col-lg-12">
+            <div id="Result_Message"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @foreach (var item in Model)
+                {<div id="@item.Id">
+                       <div class="col-md-12">
+                            <div class="blog d-block d-lg-flex">
+                                 
+
+                                <p class="text-justify">
+                                    <img src="@Url.Content(item.Directory)" alt="@item.Directory" align="Left" style="height:250px;width:250px; padding-bottom:10px; padding-right:25px;">
+                                    @item.Text
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                    <input type="Button" class="btn btn-primary btn-sm " onclick="Delete_Story(@item.Id)" value="Remove" />
+                                }
+                                </p>
+
+
+
+                                    
+                                   
+   
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="row col-lg-12">
+                @if (Request.IsAuthenticated)
+                {
+                <div class=" col-lg-3">
+                    <input type="Button" class="btn btn-outline-primary" id="Add_Story" value="Add Story" />
+
+                </div>
+                }
+
+
+                <div id="Add_new_Story" class="col-lg-9"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#Add_Story").click(function () {
+            $('#Add_new_Story').html('<form id="New_Story_Form" action="/Activities/New_Story"   \
+            method="post"> <div class="form-horizontal"> <hr /> <div class="form-group">\
+            <label class="control-label col-md-2">Attach an image</label>\
+            <div class="col-md-10"><input type="file" id="Photo6" name="fileUpload1" />\
+            </div></div><textarea id="Text_Story" Name="Story_Text" class="form-control" tabindex="4" \
+            placeholder="Write Story Details" required></textarea><div class="form-group">\
+            <div class="col-md-offset-2 col-md-10"><input onclick="Story_add()" id="Story_Info" type="button" \
+            value="Save" class="btn btn-outline-primary" /></div></div></div></form>');
+
+        });
+
+    });
+
+
+    function Delete_Story(id) {
+        var url = "/Activities/Remove_Story";
+
+        var request = $.ajax({
+            type: "POST",
+            url: url,
+            data: { id: id },
+        })
+
+        request.done(function (msg) {
+
+            if (msg == "True") {
+                var ID = "#" + id;
+                $(ID).hide();
+            }
+
+        });
+    }
+
+
+    function Story_add() {
+
+        var frm = $('#New_Story_Form');
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+
+
+                if (data != "NULL") {
+                    var Name = data;
+                    var data = new FormData();
+                    var files = $("#Photo6").get(0).files;
+                    if (files.length > 0) {
+                        data.append("MyImages", files[0]);
+                        data.append("Name", Name);
+
+
+                    }
+
+
+
+                    $.ajax({
+                        url: "/Activities/Upload_Story_Photo",
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                           
+                            if (response=="True") {
+                               
+                                $('#Add_new_Story').html('<div class="alert alert-success">\
+                                                                <strong> Thanks!</strong> Story Added.</div >');
+
+                            }
+
+                            else
+                                $('#Add_new_Story').html('<div class="alert alert-warning"><strong> Thanks !</strong> Story Added With Default Image.</div >');
+
+
+
+
+                        },
+                        error: function (er) {
+
+                            $('#Add_new_Story').html('<div class="alert alert-danger"><strong> Sorry!</strong> Story Not Added.. Try Again.</div >');
+
+                        }
+
+                    });
+
+                }
+
+            },
+            error: function (data) {
+                $('#Add_new_Story').html('<div class="alert alert-danger"><strong> Sorry!</strong> Story Not Added.. Try Again.</div >');
+
+            },
+        });
+
+
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model IEnumerable<ProjektMove.Models.Sponsor_View_Model>
+
+    @{
+        ViewBag.Title = "CLUB_MOVE";
+    }
+
+    <h2>CLUB_MOVE</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Directory)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Directory)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

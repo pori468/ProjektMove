@@ -92,10 +92,10 @@
     $(document).ready(function () {
 
         $("#Add_Story").click(function () {
-            $('#Add_new_Story').html('<form id="New_Story_Form" action="http://localhost:40524/Activities/New_Story"   \
+            $('#Add_new_Story').html('<form id="New_Story_Form" action="/Activities/New_Story"   \
             method="post"> <div class="form-horizontal"> <hr /> <div class="form-group">\
             <label class="control-label col-md-2">Attach an image</label>\
-            <div class="col-md-10"><input type="file" id="Photo" name="fileUpload1" />\
+            <div class="col-md-10"><input type="file" id="Photo6" name="fileUpload1" />\
             </div></div><textarea id="Text_Story" Name="Story_Text" class="form-control" tabindex="4" \
             placeholder="Write Story Details" required></textarea><div class="form-group">\
             <div class="col-md-offset-2 col-md-10"><input onclick="Story_add()" id="Story_Info" type="button" \
@@ -139,7 +139,7 @@
                 if (data != "NULL") {
                     var Name = data;
                     var data = new FormData();
-                    var files = $("#Photo").get(0).files;
+                    var files = $("#Photo6").get(0).files;
                     if (files.length > 0) {
                         data.append("MyImages", files[0]);
                         data.append("Name", Name);
