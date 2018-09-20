@@ -253,6 +253,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\7.jpg" />
+    <Content Include="img\About_Image.jpg" />
+    <Content Include="img\About_Image2.jpg" />
+    <Content Include="img\Default_Image.JPG" />
+    <Content Include="img\FOLLOW_EVEN_Image.jpg" />
     <Content Include="img\img_1.jpg" />
     <Content Include="img\img_1_square.jpg" />
     <Content Include="img\img_2.jpg" />
@@ -265,6 +269,9 @@
     <Content Include="img\person_3.jpg" />
     <Content Include="img\slider-1.jpg" />
     <Content Include="img\slider-2.jpg" />
+    <Content Include="img\Sponsor.jpg" />
+    <Content Include="img\Story.JPG" />
+    <Content Include="img\VESTERGADE_SEVEN_Image.jpg" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\jquery.magnific-popup.min.js" />

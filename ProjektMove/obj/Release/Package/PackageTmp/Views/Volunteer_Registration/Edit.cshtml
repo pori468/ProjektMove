@@ -143,8 +143,7 @@
 <script>
     $("#Edit_Info").click(function () {
 
-        alert("Check");
-
+       
         var frm = $('#Edit_Member_Info');
         $.ajax({
             type: frm.attr('method'),
@@ -201,8 +200,8 @@
 
             },
             error: function (data) {
-                $("#Fail").removeClass("hide");
-                $("#Fail").addClass("show");
+                $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Member Profile is Not Modified.. Try Again.</div >');
+
             },
         });
 
