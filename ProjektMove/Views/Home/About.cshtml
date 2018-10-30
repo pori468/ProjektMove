@@ -108,7 +108,7 @@
         @if (Request.IsAuthenticated)
         {
             <div class=" row col-sm-12">
-                <input type="file" id="Photo" value="Image" />
+                <input type="file" id="PhotoGallery" value="Image" />
                 <input type="Button" class="btn btn-outline-primary" id="Add_Photo" value="Add Image" />
             </div>
         }
@@ -211,7 +211,7 @@
 
 
             var data = new FormData();
-            var files = $("#Photo").get(0).files;
+            var files = $("#PhotoGallery").get(0).files;
             if (files.length > 0) {
                 data.append("MyImages", files[0]);
             }
@@ -454,145 +454,4 @@
 
 
 
-@*@{
-        ViewBag.Title = "About";
-    }
-    <h2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <div id="Result_Message"></div>
-
-        <div id="About_Image">
-
-        </div>
-        <div class="col-md-offset-2 col-md-10">
-            <input type="file" id="Photo" value="Image" />
-            <input id="Change_About_Image" type="Button" value="Change Image" class="btn btn-default" />
-
-        </div>
-
-        <div >
-            <div id="About_Text">
-
-            </div>
-
-            <input id="Add_Paragraph" type="Button" value="Add Paragraph" class="btn btn-default" />
-
-        </div>
-
-        <div id="Input"></div>
-
-        <div id="Button">
-        </div>
-
-
-    <script>
-
-        $(document).ready(function () {
-            $('#About_Image').load("/Home/Show_About");
-            $('#About_Text').load("/Home/Show_Paragraph");
-
-
-            $("#Change_About_Image").click(function () {
-            var data = new FormData();
-            var files = $("#Photo").get(0).files;
-            if (files.length > 0) {
-                data.append("MyImages", files[0]);
-            }
-
-            $.ajax({
-                url: "/Home/Change_About",
-                type: "POST",
-                processData: false,
-                contentType: false,
-                data: data,
-                success: function (response) {
-                    if (response) {
-                       $('#About_Image').load("/Home/Show_About");
-                        $('#Result_Message').html('<div class="alert alert-success">\
-                                                            <strong> Thanks!</strong> Your Photo Is Changed.</div >');
-
-                        $('#Photo').val('');
-                    }
-
-                    else
-                        $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
-
-
-
-
-                },
-                error: function (er) {
-                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Photo Is Not Changed.. Try Again.</div >');
-
-                }
-
-                });
-            });
-
-
-            $("#Add_Paragraph").click(function () {
-
-                $('#Input').html('<textarea id="Text_Input" name="career[message]" class="form-control" tabindex="4" placeholder="Write your details" required></textarea>', '<input id="Add" type="Button" value="Add" class="btn btn-default" />');
-                $('#Button').html('<input id="Add" type="Button" value="Add" class="btn btn-default" />');
-
-                $("#Add").click(function () {
-                    var text = $("#Text_Input").val();
-
-                    if (text != "") {
-
-                        $.ajax({
-                            url: "/Home/Add_Paragraph",
-                            type: "POST",
-                            data: { Text: text },
-
-                            success: function (response) {
-
-                                if (response == "True") {
-
-                                    $('#About_Text').load("/Home/Show_Paragraph");
-                                    $('#Result_Message').html('<div class="alert alert-success">\
-                                                            <strong> Thanks!</strong> Your Paragraph Is Added.</div >');
-
-                                    $('#Input').empty();
-                                    $('#Button').empty();
-
-                                }
-
-                                else
-                                    $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Paragraph Is Not Added false.. Try Again.</div >');
-
-
-
-
-                            },
-                            error: function (er) {
-                                $('#Result_Message').html('<div class="alert alert-warning"><strong> Sorry!</strong> Your Paragraph Is Not Added error.. Try Again.</div >');
-
-                            }
-
-                        });
-
-
-
-                    }
-
-                    else {
-                        $('#Result_Message').html('<div class="alert alert-warning"> <strong> Your Text is Empty</div >');
-
-
-                    }
-
-
-                });
-
-            });
-
-        });
-    </script>*@

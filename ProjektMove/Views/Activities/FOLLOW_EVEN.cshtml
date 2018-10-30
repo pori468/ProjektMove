@@ -31,71 +31,42 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container text-center">
         <div class="row col-lg-12">
             <div id="Result_Message"></div>
         </div>
 
-               
-        <p class="row text-justify">
-            <div id="Show_Image" class="align=" Left" style="height:250px;width:250px; padding-bottom:10px; padding-right:25px;"></div>
+        <div class="row">
+            <div class="col-md-12 center-block">
+                <div id="Show_Image" style="height:500px;width:700px; padding-bottom:10px; padding-right:25px;"></div>
+            </div>
+        </div>
+        <div class="row">
 
-            <p id="Show_Text">
+            <div class="col-md-12">
+                <p id="Show_Text">
 
-            </p>
-
-            @if (Request.IsAuthenticated)
-            {
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="file" id="Photo5" value="Image" />
-                    <input id="Change_FOLLOW_EVEN_Image" type="Button" value="Change Image" class="btn btn-outline-primary" />
-
-                </div>
-
-                <input id="Add_Paragraph_FOLLOW_EVEN" type="Button" value="Add Paragraph" class="btn btn-outline-primary" />
-                <div id="Input"></div>
-
-                <div id="Button">
-                </div>
-            }
-
-
-        </p>
-        @*   <div class="row">
-            <div class="col-lg-6">
-
-                <div id="Show_Image"></div>
-                @if (Request.IsAuthenticated)
-                {
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="file" id="Photo" value="Image" />
-                    <input id="Change_FOLLOW_EVEN_Image" type="Button" value="Change Image" class="btn btn-outline-primary" />
-
-                </div>
-                }
+                </p>
+            </div>
+        </div>
+        @if (Request.IsAuthenticated)
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <input type="file" id="Photo5" value="Image" />
+                <input id="Change_FOLLOW_EVEN_Image" type="Button" value="Change Image" class="btn btn-outline-primary" />
 
             </div>
 
+            <input id="Add_Paragraph_FOLLOW_EVEN" type="Button" value="Add Paragraph" class="btn btn-outline-primary" />
+            <div id="Input"></div>
 
-
-            <div class="col-lg-6 pl-2 pl-lg-5">
-                <div id="Show_Text">
-
-                </div>
-                @if (Request.IsAuthenticated)
-                {
-                <input id="Add_Paragraph_FOLLOW_EVEN" type="Button" value="Add Paragraph" class="btn btn-outline-primary" />
-                <div id="Input"></div>
-
-                <div id="Button">
-                </div>
-                }
-
+            <div id="Button">
             </div>
+        }
 
 
 
-        </div>*@
+
     </div>
 </section>
 
